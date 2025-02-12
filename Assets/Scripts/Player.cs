@@ -7,45 +7,66 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public float speed = 5;
-    public GameObject Win;
     private bool playing = false;
+    public AudioClip clip;
+    public AudioSource audioSource;
+    public GameObject Won;
+    private bool hasWon = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        Win.SetActive(false);
+        
         playing = true;
-    }
+        audioSource = GetComponent<AudioSource>();
+        Won.SetActive(false);
+        hasWon = false;
+}
 
     // Update is called once per frame
     void Update()
+{
+    if (playing == true)
     {
-        if (playing == true)
-        {
-            Vector2 pos = transform.position;
+        Vector2 pos = transform.position;
 
-            pos.y += Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
-            transform.position = pos;
-        }
-        if (playing == false && Input.GetKeyDown(KeyCode.Space))
-        {
-            Win.SetActive(false);
-            playing = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        pos.y += Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
+        transform.position = pos;
+    }
+    if (hasWon && Input.GetKeyDown(KeyCode.Space))
+    {
+        Won.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        audioSource.Stop();
+    }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Car")
+        if (collision.CompareTag("Car"))
         {
             Debug.Log("Try Again!");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
 
-        }
-        if (collision.tag == "Win")
+        if (collision.CompareTag("Win"))
         {
-            playing = false;
-            Win.SetActive(true);
-        }
+            Debug.Log("Won");
+            if (Won != null)
+            {
+                Won.SetActive(true);
+            }
+            else
+            {
+                audioSource.PlayOneShot(clip);
+                hasWon = true;
+                playing = false;
+            }
+          
+            
+          
+         
+    }
     }
 }
