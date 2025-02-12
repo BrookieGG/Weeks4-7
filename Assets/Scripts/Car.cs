@@ -4,28 +4,18 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
-    public Rigidbody2D rigid;
-    public float speed = 5f;
+    public Rigidbody2D rigidb;
+    public float minspeed = 8f;
+    public float maxspeed = 22f;
+    private float speed = 1f;
+    private void Start()
+    {
+        speed = Random.Range(minspeed, maxspeed);
+    }
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = transform.position;
-        pos.x += speed * Time.deltaTime;
-
-        Vector2 screenPos = Camera.main.WorldToScreenPoint(pos);
-
-        if (screenPos.x < 0)
-        {
-            Vector3 fixedPos = new Vector3(0,0,0);
-            pos.x = Camera.main.WorldToScreenPoint(fixedPos).x;
-            speed = speed * -1;
-        }
-        if (screenPos.x > Screen.width)
-        {
-            Vector3 fixedPos = new Vector3(Screen.width, 0, 0);
-            pos.x = Camera.main.WorldToScreenPoint(fixedPos).x;
-            speed = speed * -1;
-        }
-        transform.position = pos;
+        Vector2 move = new Vector2(transform.right.x, transform.right.y);
+        rigidb.MovePosition(rigidb.position + move * Time.deltaTime * speed);
     }
 }
