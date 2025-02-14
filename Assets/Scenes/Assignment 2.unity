@@ -1549,9 +1549,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawn: {fileID: 283895552}
-  speedSlider: {fileID: 0}
-  sizeSlider: {fileID: 0}
+  speedSlider: {fileID: 2002882415}
+  sizeSlider: {fileID: 1898329022}
   renderer: {fileID: 1929621519}
+  preview: {fileID: 1283277946}
   dropdown: {fileID: 1225957636}
 --- !u!4 &938775321
 Transform:
