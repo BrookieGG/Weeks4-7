@@ -7,7 +7,7 @@ public class DungeonPlayer : MonoBehaviour
     float horizontal;
     float speed = 5f;
     private bool isFacingRight = false;
-    float jump = 4f;
+    float jump = 5f;
     private bool isJumping = false;
 
     Rigidbody2D rb;
@@ -15,27 +15,25 @@ public class DungeonPlayer : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        isJumping = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2 (horizontal * speed, rb.velocity.y);
 
         FlipSprite();
 
-        if (Input.GetButtonDown("Jump") && !isJumping);
+        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jump);
             isJumping = true;
         }
     }
 
-    void FixedUpdte()
-    {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-    }
-
+   
     void FlipSprite()
     {
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
