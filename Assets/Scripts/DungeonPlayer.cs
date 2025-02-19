@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DungeonPlayer : MonoBehaviour
@@ -9,6 +10,8 @@ public class DungeonPlayer : MonoBehaviour
     private bool isFacingRight = false;
     float jump = 5f;
     private bool isJumping = false;
+    private int coinCounter = 0;
+    public TMP_Text counter;
 
     Rigidbody2D rb;
     // Start is called before the first frame update
@@ -46,6 +49,15 @@ public class DungeonPlayer : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        isJumping = false;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isJumping = false;
+        }
+        else if (collision.gameObject.CompareTag("Coin") && collision.gameObject.activeSelf)
+        {
+            collision.gameObject.SetActive(false);
+            coinCounter += 1;
+            counter.text = "Coins: " + coinCounter;
+        }
     }
 }
