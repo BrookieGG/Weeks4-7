@@ -12,8 +12,9 @@ public class DungeonPlayer : MonoBehaviour
     private bool isJumping = false;
     private int coinCounter = 0;
     public TMP_Text counter;
+    public GameObject coin;
 
-    Rigidbody2D rb;
+    Rigidbody2D rb; 
     // Start is called before the first frame update
     void Start()
     {
@@ -53,11 +54,15 @@ public class DungeonPlayer : MonoBehaviour
         {
             isJumping = false;
         }
-        else if (collision.gameObject.CompareTag("Coin") && collision.gameObject.activeSelf)
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Coin"))
         {
             collision.gameObject.SetActive(false);
             coinCounter += 1;
             counter.text = "Coins: " + coinCounter;
         }
+        
     }
 }
