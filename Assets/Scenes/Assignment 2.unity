@@ -1751,8 +1751,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1461551306}
-        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+      - m_Target: {fileID: 1984847545}
+        m_TargetAssemblyTypeName: DropDownSelect, Assembly-CSharp
         m_MethodName: OnValueChanged
         m_Mode: 0
         m_Arguments:
@@ -2814,9 +2814,21 @@ MonoBehaviour:
   spawn: {fileID: 283895552}
   speedSlider: {fileID: 2002882415}
   sizeSlider: {fileID: 1898329022}
-  renderer: {fileID: 1929621519}
+  renderers:
+  - {fileID: 1929621519}
+  - {fileID: 1949071998}
+  - {fileID: 723916369}
+  - {fileID: 302496035}
+  - {fileID: 1283526491}
+  - {fileID: 1819698285}
+  - {fileID: 443837853}
+  - {fileID: 1579159329}
+  - {fileID: 1520388383}
+  - {fileID: 1627582162}
   preview: {fileID: 1283277946}
   dropdown: {fileID: 1225957636}
+  isActive: 
+  speeds: []
 --- !u!4 &938775321
 Transform:
   m_ObjectHideFlags: 0
@@ -5152,6 +5164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1984847544}
+  - component: {fileID: 1984847545}
   m_Layer: 0
   m_Name: dropdown select
   m_TagString: Untagged
@@ -5174,6 +5187,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1984847545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984847543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51ef0da26f38edf45a3e381383238d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropdown: {fileID: 635650061}
+  mySprite: {fileID: 691591785}
 --- !u!1 &1987511801
 GameObject:
   m_ObjectHideFlags: 0
