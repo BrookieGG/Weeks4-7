@@ -183,7 +183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTime: 0.2
-  CountDown: 1
   car: {fileID: 6465065902672706721, guid: 252a37373c02af346bf1b9b187adfd49, type: 3}
   spawnPoints:
   - {fileID: 2068591659}
@@ -714,11 +713,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  playing: 0
   clip: {fileID: 8300000, guid: c0092ceaa223bd241b48c41e5301f06d, type: 3}
   audioSource: {fileID: 0}
   Won: {fileID: 950211184}
-  hasWon: 0
 --- !u!212 &1314687051
 SpriteRenderer:
   m_ObjectHideFlags: 0
