@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class PlanetBehaviour : MonoBehaviour
 {
+    //UI 
     public Button spawn;
     public Slider speedSlider;
     public Slider sizeSlider;
     public SpriteRenderer[] renderers;
     public SpriteRenderer preview;
     public TMP_Dropdown dropdown;
+
     public bool[] isActive;
     public float[] speeds;
 
@@ -28,6 +30,8 @@ public class PlanetBehaviour : MonoBehaviour
         sizeSlider.maxValue = 260f;
         size = sizeSlider.value;
         index = 0;
+
+        //Initialize arrays
         isActive = new bool[10];
         speeds = new float[10];
 
@@ -41,6 +45,7 @@ public class PlanetBehaviour : MonoBehaviour
         {
             if (isActive[i])
             {
+                //move planet to right based on speed
                 Vector3 pos = renderers[i].transform.position;
                 pos.x += (speeds[i] * Time.deltaTime);
                 renderers[i].transform.position = pos;
@@ -56,15 +61,19 @@ public class PlanetBehaviour : MonoBehaviour
     void Spawn()
     {
         SpriteRenderer renderer = renderers[index];
+        //assign sprite from drop down
         renderer.sprite = dropdown.options[dropdown.value].image;
+        //set position and scale
         renderer.transform.position = new Vector3(-45, Random.Range(-19f, 19f), 0);
         renderer.transform.localScale = new Vector2(size / 13, size / 13);
+
+        //activate planet and set speed
         isActive[index] = true;
         speeds[index] = speedSlider.value;
 
 
 
-
+        //move to the next renderer in the array and loop
         index = (index + 1) % renderers.Length;
     }
 
@@ -77,11 +86,10 @@ public class PlanetBehaviour : MonoBehaviour
     //Changes the size of the planet
     void SetSize()
     {
+        //adjusts size of the planet preview and spawn
         size = sizeSlider.value;
         //renderer.size = new Vector2(size, size);
         preview.transform.localScale = new Vector2(size, size);
 
     }
-
-
 }
